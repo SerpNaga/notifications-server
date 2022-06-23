@@ -13,8 +13,7 @@ const DBURI = process.env.DBURI
 
 app.use(
     cors({
-        origin: "https://serp-notifications-client.herokuapp.com",
-        methods:["GET", "POST", "PUT", "DELETE"],
+        origin: "*"
     })
 )
 app.use(
@@ -29,8 +28,7 @@ app.use("/api", router)
 
 const io = new Server(server, {
     cors:{
-        origin: 'https://serp-notifications-client.herokuapp.com',
-        methods:["GET", "POST", "PUT", "DELETE"]
+        origin: '*'
     }
 })
 
