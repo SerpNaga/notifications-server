@@ -11,14 +11,19 @@ const router = require("./routes/router");
 const PORT= process.env.PORT
 const DBURI = process.env.DBURI
 
-app.options('*', cors())
-
 app.use(
     express.urlencoded({
         extended: true,
     })
-);
-const server = http.createServer(app)
+    );
+    
+app.use(
+        cors({
+        origin: "*"
+    })
+    )
+    const server = http.createServer(app)
+app.options('*', cors())
 app.use("/api", router)
 
 
