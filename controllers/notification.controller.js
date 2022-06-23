@@ -2,13 +2,18 @@ const NotificationModel = require("../models/notification.model");
 const { StatusCodes } = require("http-status-codes");
 
 const addNotification = async (req, res) => {
-    const { user, text, ndate, ntype} = req.headers;
+    const { ndate, ntype} = req.headers;
+    const text = decodeURIComponent(req.headers.text)
+    const user = decodeURIComponent(req.headers.user)
     let newNotification = await NotificationModel.create({user, text, date:ndate, type:ntype });
     console.log(`add ${user} ${text} ${ndate} ${ntype}`)
     res.status(StatusCodes.CREATED).send({id:newNotification._id});
 };
 const editNotification = async (req, res) => {
-    const { user, text, ndate, ntype} = req.headers;
+    const { ndate, ntype} = req.headers;
+    const text = decodeURIComponent(req.headers.text)
+    const user = decodeURIComponent(req.headers.user)
+    console.log(req.body)
     const { id } = req.params;
     let editNotification = await NotificationModel.updateOne({_id:id}, {user, text, date:ndate, type:ntype });
     console.log(`edit ${id} ${user} ${text} ${ndate} ${ntype}`)
