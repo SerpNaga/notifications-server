@@ -20,7 +20,6 @@ app.use(
 app.use(
         cors({
         origin: "*",
-        methods:"*",
         allowHeaders:"*",
         optionsSuccessStatus: 200
     })
