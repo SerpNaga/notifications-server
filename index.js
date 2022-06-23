@@ -11,27 +11,12 @@ const router = require("./routes/router");
 const PORT= process.env.PORT
 const DBURI = process.env.DBURI
 
-
-const cors = require('cors');
-const whitelist = [
-  'http://localhost:3000',
-  "https://serp-notifications-client.herokuapp.com/"
-];
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log('** Origin of request ' + origin);
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      console.log('Origin acceptable');
-      callback(null, true);
-    } else {
-      console.log('Origin rejected');
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-};
-express().use(cors(corsOptions));
-
-
+app.use(
+    cors({
+        origin: "https://serp-notifications-client.herokuapp.com",
+        methods:["GET", "POST", "PUT", "DELETE"],
+    })
+)
 app.use(
     express.urlencoded({
         extended: true,
