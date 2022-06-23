@@ -65,8 +65,8 @@ io.on("connection", (socket)=>{
     socket.on("editnotif", async ({id, text, date, type, user}) => {
         io.emit('editnotif', {id, text, date, type, user})
     })
-    socket.on("pong",()=>{
-        console.log("ponged")
+    socket.on("pong",({message})=>{
+        console.log(message)
     })
     socket.on("disconnect", ()=>{
         removeUser(socket.id)
