@@ -19,10 +19,13 @@ app.use(
     
 app.use(
         cors({
-        origin: "*"
+        origin: "*",
+        methods:"*",
+        allowHeaders:"*",
+        optionsSuccessStatus: 200
     })
     )
-    const server = http.createServer(app)
+const server = http.createServer(app)
 app.options('*', cors())
 app.use("/api", router)
 
